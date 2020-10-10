@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Index</title>
+<style>
+    * {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Montserrat";
+    text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Montserrat-Bold";
+}
+
+p {
+    color: #8f8f8f;
+    font-size: 1rem;
+    font-family: 'Montserrat-Black', sans-serif;
+}
+
+.big-heading {
+    font-family: 'Montserrat-Black', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.section-heading {
+    font-size: 3rem;
+    line-height: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-align: left;
+    color: #353535;
+}
+
+/*Containers*/
+
+.container-fluid {
+    padding: 7% 15%;
+}
+
+/*Sections*/
+
+.colored-section {
+    background-color: #b3aea8;
+    color: #fff;
+}
+
+.white-section {
+    background-color: #fff;
+}
+
+/*Navigation Bar*/
+
+.navbar {
+    padding: 0 0 4.5rem;
+}
+
+.navbar-brand {
+    font-family: "Ubuntu";
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.nav-item {
+    padding: 0 2px;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    font-family: "Montserrat-Light";
+}
+
+/*Title Section*/
+
+.layer {
+    background-color: #226153;
+}
+
+#title .container-fluid {
+    padding: 3% 15% 7%;
+    text-align: left;
+}
+
+/*Title Image*/
+
+.title-image {
+    width: 80%;
+    object-fit: cover;
+    margin-left: 17%;
+}
+
+/*Banner*/
+
+.banner {
+    background-image: url('/images/bakery-banner.jpg');
+    background-repeat: no-repeat;
+    object-fit: cover;
+    height: 600px;
+}
+
+.color-overlay {
+    background-color: #226153;
+    height: 600px;
+    width: 100%;
+    position: absolute;
+}
+
+
+
+</style>  
+
+</head>
+ 
+  <body>
+    {% load static %}
+    <section id="title" class="banner">
+        <div class="color-overlay"></div>
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+
+            <nav class="navbar navbar-expand-lg navbar-dark" id="navigation-Section">
+                <a class="navbar-brand" href="#">Invoice Data</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Title -->
+            <div class="row title-text">
+                <div class="col-lg-6">
+                    <form method="POST"  enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form}}
+                      
+                        <input type="submit" name='submit'>
+                    </form>
+
+
+                  <br>
+                  <button onclick="extract()" > Generate Photo </button>
+                  <p id="t">  Generate Photo  </p>
+                  <div>
+                      <img id="img"  src="" height="200px" width="200px" >
+
+                  </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"> </script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script>
+        function extract()
+        {
+            $.ajax({ 
+
+                url:'{% url "bantu" %}',
+                data:{
+                    'n':1
+                },
+                success:function(data)
+                {
+                    document.getElementById('t').innerHTML=" Successful "
+                    document.getElementById('img').src="/media/upload/"+data['image']
+
+
+                }
+
+            });
+
+        }
+ 
+
+
+    </script>
+    
+</body>
+</html>
