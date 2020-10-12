@@ -26,9 +26,8 @@ def index(request):
     return render(request,'imageapp/index.html', context)
 
 
-def bantu(request):
-    print("Bantu Choudhary")
-    pdf_dir =r"G:\\invoice\\media\\upload\\"
+def convert_data(request):
+    pdf_dir =r"G:\\invoice\\media\\upload\\"  #Enter the path to the uploaded pdf
    
     os.chdir(pdf_dir)
 
@@ -38,9 +37,9 @@ def bantu(request):
             c=1
             page.save(pdf_file[:-4]+str(c)+".jpg", 'JPEG')
             c=c+1
-    b=os.listdir(r"G:\\invoice\\media\\upload\\")
+    b=os.listdir(r"G:\\invoice\\media\\upload\\") #accessing the folder in which the images are stored
     d=b[1]
     print(d)
 
     data={"key": "value", "image":d}
-    return JsonResponse(data)  
+    return JsonResponse(data)  #sending the json response to the ajax call in index.html
