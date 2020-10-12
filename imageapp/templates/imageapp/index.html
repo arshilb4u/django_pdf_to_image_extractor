@@ -200,11 +200,11 @@ p {
         {
             $.ajax({ 
 
-                url:'{% url "bantu" %}',
+                url:'{% url "convert" %}',
                 data:{
-                    'n':1
+                    'n':1  #sending the data to views.py
                 },
-                success:function(data)
+                success:function(data) #getting the data from views.py
                 {
                     document.getElementById('t').innerHTML=" Successful "
                     document.getElementById('img').src="/media/upload/"+data['image']
