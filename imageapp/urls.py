@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('bantu', views.bantu, name='bantu'),
+    path('convert_data', views.convert_data, name='convert'),
      
 ]
